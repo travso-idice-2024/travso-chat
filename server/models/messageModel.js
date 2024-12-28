@@ -15,6 +15,11 @@ const MessageSchema = mongoose.Schema(
       type: Boolean,
       default: false, 
     },
+    type: String,
+    storyImagePath:{
+      type: String,
+      default: "",
+    }
   },
   {
     timestamps: true,

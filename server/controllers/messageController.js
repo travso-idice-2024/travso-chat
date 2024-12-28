@@ -1,8 +1,10 @@
 const Messages = require("../models/messageModel");
+const User  = require("../models/userModel");
 
 module.exports.getMessages = async (req, res, next) => {
   try {
     const { from, to } = req.body;
+
 
     const messages = await Messages.find({
       users: {
@@ -15,6 +17,8 @@ module.exports.getMessages = async (req, res, next) => {
         fromSelf: msg.sender.toString() === from,
         message: msg.message.text,
         isSeen:msg.isSeen,
+        type: msg.type,
+        storyImagePath: msg.storyImagePath
       };
     });
     res.json(projectedMessages);
@@ -25,12 +29,20 @@ module.exports.getMessages = async (req, res, next) => {
 
 module.exports.addMessage = async (req, res, next) => {
   try {
-    const { from, to, message } = req.body;
+    const { from, to, message, type,storyImagePath } = req.body;
+    // const data = await Messages.create({
+    //   message: { text: message },
+    //   users: [from, to],
+    //   sender: from,
+    // });
     const data = await Messages.create({
       message: { text: message },
       users: [from, to],
       sender: from,
+      type: type,
+      storyImagePath: storyImagePath
     });
+
 
     if (data) return res.json({ msg: "Message added successfully." });
     else return res.json({ msg: "Failed to add message to the database" });

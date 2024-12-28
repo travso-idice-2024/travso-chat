@@ -5,6 +5,7 @@ const {
   setAvatar,
   logOut,
   markAsRead,
+  fetchUser
 } = require("../controllers/userController");
 
 const router = require("express").Router();
@@ -15,6 +16,7 @@ router.get("/allusers/:id", getAllUsers);
 router.post("/setavatar/:id", setAvatar);
 router.get("/logout/:id", logOut);
 router.post("/markAsRead", markAsRead);
+router.get("/fetchUser/:id",fetchUser);
 
 
 module.exports = router;

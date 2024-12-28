@@ -120,12 +120,41 @@ export default function ChatContainer({ currentChat, socket, setContacts }) {
                   <p>{message.message}</p>
                 </div> */}
                 <div className="content">
-                  <p>{message.message}</p>
+                  {/* 27-12-2024 */}
+                  {message.type === "story" ? (
+                    <div className="story-comment">
+                      {/* Display image and username */}
+                      <img
+                        src={message.storyImagePath}
+                        alt="Story"
+                        className="story-image"
+                      />
+
+                      <p className="username">
+                       
+                          <span style={{ fontSize: "12px" }}>
+                            Replied to your story
+                          </span>
+                       
+                      </p>
+
+                      <p className="comment">{message.message}</p>
+                    </div>
+                  ) : (
+                    <p className="normal-text">{message.message}</p>
+                  )}
+
+                  {/* 27-12-2024 */}
+                  {/* <p>{message.message}</p> */}
                   <div className="message-status">
                     {message.isSeen ? (
-                      <span><LuCheckCheck /></span> // Double arrow for seen messages
+                      <span>
+                        <LuCheckCheck />
+                      </span> // Double arrow for seen messages
                     ) : (
-                      <span><IoCheckmarkSharp /></span> // Single arrow for unseen messages
+                      <span>
+                        <IoCheckmarkSharp />
+                      </span> // Single arrow for unseen messages
                     )}
                   </div>
                 </div>

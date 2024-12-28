@@ -204,3 +204,18 @@ module.exports.markAsRead = async (req, res, next) => {
   }
 };
 
+//fetchUser
+module.exports.fetchUser = async (req, res, next) => {
+  try {
+    const userId = req.params.id; 
+    const user = await User.findOne({ user_id: userId }).select("_id");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    return res.status(200).json({ _id: user._id });
+  } catch (error) {
+    next(error);
+  }
+};
+
+

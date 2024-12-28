@@ -7,5 +7,4 @@ export const sendMessageRoute = `${host}/api/messages/addmsg`;
 export const recieveMessageRoute = `${host}/api/messages/getmsg`;
 export const setAvatarRoute = `${host}/api/auth/setavatar`;
 export const markAsReadRoute = `${host}/api/auth/markAsRead`; //24-12-2024
-export const fetchLoginDataRoute = `${host}/api/auth/fetchLoginData`; //26-12-2024
-export const fetchUserDataRoute = `${host}/api/auth/fetchUser`;
+export const fetchUserDataRoute = `${host}/api/auth/fetchUser/:id`;
